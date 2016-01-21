@@ -43,8 +43,8 @@ var openItemOnAgent = function(path, id, openFolder) {
          }                                        
      }
     
-    logMessage('Playing ' + path);
-    var url = 'http://localhost:7251/?protocol=1&item=' + encodeURIComponent(path);
+    logMessage('Playing ' + window.location.host + path);
+    var url = 'http://localhost:7251/?protocol=1&item=' + encodeURIComponent(window.location.host + path);
   
      return new Promise(function (resolve, reject) {
          makeRequest(url).then(function(){
@@ -75,8 +75,8 @@ var clickListener = function(e) {
              // Play the first availible part
              var parts = response.responseXML.getElementsByTagName('Part');
                 for (var i = 0; i < parts.length; i++) {
-                    if (parts[i].attributes['file'] !== undefined) {
-                        openItemOnAgent(parts[i].attributes['file'].value, id, openFolder);
+                    if (parts[i].attributes['key'] !== undefined) {
+                        openItemOnAgent(parts[i].attributes['key'].value, id, openFolder);
                         return;
                     }
                 }
