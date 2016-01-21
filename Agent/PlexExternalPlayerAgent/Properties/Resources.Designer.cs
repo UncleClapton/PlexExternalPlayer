@@ -59,5 +59,14 @@ namespace PlexExternalPlayerAgent.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1201.
+        /// </summary>
+        internal static string ExpectedProtocol {
+            get {
+                return ResourceManager.GetString("ExpectedProtocol", resourceCulture);
+            }
+        }
     }
 }

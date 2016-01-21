@@ -46,14 +46,5 @@ namespace PlexExternalPlayerAgent.Properties {
                 this["PlayerArguments"] = value;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1201")]
-        public string ExpectedProtocol {
-            get {
-                return ((string)(this["ExpectedProtocol"]));
-            }
-        }
     }
 }
