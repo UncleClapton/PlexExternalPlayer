@@ -61,11 +61,20 @@ namespace PlexExternalPlayerAgent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1201.
+        ///   Looks up a localized string similar to 1001.
         /// </summary>
-        internal static string ExpectedProtocol {
+        internal static string GenericProtocol {
             get {
-                return ResourceManager.GetString("ExpectedProtocol", resourceCulture);
+                return ResourceManager.GetString("GenericProtocol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1102.
+        /// </summary>
+        internal static string PlexProtocol {
+            get {
+                return ResourceManager.GetString("PlexProtocol", resourceCulture);
             }
         }
     }
