@@ -37,13 +37,13 @@ namespace PlexExternalPlayerAgent.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string PlayerArguments {
+        [global::System.Configuration.DefaultSettingValueAttribute("\"%url%\" --title=\"%fullTitle%\"")]
+        public string PlayerPlexArguments {
             get {
-                return ((string)(this["PlayerArguments"]));
+                return ((string)(this["PlayerPlexArguments"]));
             }
             set {
-                this["PlayerArguments"] = value;
+                this["PlayerPlexArguments"] = value;
             }
         }
         
@@ -56,6 +56,30 @@ namespace PlexExternalPlayerAgent.Properties {
             }
             set {
                 this["ShowCommandLine"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\"%url%\" --title=\"%title%\"")]
+        public string PlayerGenericArguments {
+            get {
+                return ((string)(this["PlayerGenericArguments"]));
+            }
+            set {
+                this["PlayerGenericArguments"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool EnableGenericProtocol {
+            get {
+                return ((bool)(this["EnableGenericProtocol"]));
+            }
+            set {
+                this["EnableGenericProtocol"] = value;
             }
         }
     }

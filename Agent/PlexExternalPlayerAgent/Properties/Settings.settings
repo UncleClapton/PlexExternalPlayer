@@ -5,11 +5,17 @@
     <Setting Name="PlayerPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">mpv</Value>
     </Setting>
-    <Setting Name="PlayerArguments" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="PlayerPlexArguments" Type="System.String" Scope="User">
+      <Value Profile="(Default)">"%url%" --title="%fullTitle%"</Value>
     </Setting>
     <Setting Name="ShowCommandLine" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="PlayerGenericArguments" Type="System.String" Scope="User">
+      <Value Profile="(Default)">"%url%" --title="%title%"</Value>
+    </Setting>
+    <Setting Name="EnableGenericProtocol" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>
