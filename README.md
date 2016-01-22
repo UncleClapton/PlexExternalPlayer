@@ -1,6 +1,10 @@
 # External plex player
 
-This is a plex modification that allows for browsing using the web interface but then opting to play files in your standard media player.
+This is my personal fork of the External Plex player, which will work with remote plex servers as well as local ones using the plex-hosted media stream.
+
+The original project can be found [Here](https://github.com/Kayomani/PlexExternalPlayer)
+
+External Plex Player is a plex modification that allows for browsing using the web interface but then opting to play files in your standard media player.
 
 ### Installation
 1. Install Chrome or Firefox
