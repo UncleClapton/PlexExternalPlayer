@@ -20,18 +20,16 @@ External Plex Player is a plex modification that allows for browsing using the w
 
 * If the install dialog does not immediately appear for you in Firefox, a banner with the option to install the script should appear after the script loads.
 
-## 1.4 feature addition details. (Coming soon.)
-
+## Documentation 1.4+ (Coming soon.)
+**Note: ** These features are currently in development, and not available on release.
 
 ### Generic Protocol
-**NEW TO v1.4**
 * Designed to be an open protocol for other scripts to send files to the agent.
 * It is currently disabled by default, however it can be enabled by switching "EnableGenericProtocol" in the agent .config file to `true`.
 * Format: `http://localhost:7251/?protocol=1001&url=(url)&title=(title)`
 
 
 ### Player Argument variables
-**NEW TO v1.4**
 The PlayerPlexArguments and PlayerGenericArguments property accepts metadata variables to pass into
 
 #####PlayerPlexArguments
