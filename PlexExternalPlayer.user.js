@@ -33,21 +33,13 @@ var markAsPlayedInPlex = function(id) {
     return makeRequest(window.location.origin + '/:/scrobble?key='+ id +'&identifier=com.plexapp.plugins.library');
 };
 
-var openItemOnAgent = function(path, id, openFolder) {
-     if(openFolder){
-         var fwd = path.lastIndexOf('/');
-         var bck = path.lastIndexOf('\\');
-         var best = fwd>bck?fwd:bck;
-         if(best>-1){
-             path = path.substr(0, best);   
-         }                                        
-     }
+var pushItemToAgent = function(url, id, grandparentTitle, title, rating, filePath) {
     
-    logMessage('Playing ' + path);
-    var url = 'http://localhost:7251/?protocol=1201&item=' + encodeURIComponent(path);
+    logMessage('Playing ' + url);
+    var agentUrl = 'http://localhost:7251/?protocol=1202&url=' + encodeURIComponent(url) + "&id=" + id + "&title=" + title + "&grandparentTitle=" + grandparentTitle + "&rating=" + rating + "&filePath=\"" + filePath + "\"";
   
      return new Promise(function (resolve, reject) {
-         makeRequest(url).then(function(){
+         makeRequest(agentUrl).then(function(){
              markAsPlayedInPlex(id).then(resolve, reject);
          },reject);
      });
@@ -74,9 +66,29 @@ var clickListener = function(e) {
         .then(function(response){
              // Play the first availible part
              var parts = response.responseXML.getElementsByTagName('Part');
+             var video = response.responseXML.getElementsByTagName('Video');
+             var videoMetadata = video[0];
                 for (var i = 0; i < parts.length; i++) {
                     if (parts[i].attributes['key'] !== undefined) {
-                        openItemOnAgent(window.location.protocol + '//' + window.location.host + parts[i].attributes['key'].value, id, openFolder);
+                        var url = window.location.protocol + '//' + window.location.host + parts[i].attributes['key'].value;
+                        var grandparentTitle = "";
+                        var title = "";
+                        var rating = "";
+                        var filePath = "";
+
+                        if (videoMetadata !== undefined) {
+                            if(videoMetadata.attributes['grandparentTitle'] !== undefined)
+                                grandparentTitle = videoMetadata.attributes['grandparentTitle'];
+                            if(videoMetadata.attributes['title'] !== undefined)
+                                title = videoMetadata.attributes['title'];
+                            if(videoMetadata.attributes['contentRating'] !== undefined)
+                                rating = videoMetadata.attributes['contentRating'];
+                            if(parts[i].attributes['file'] !== undefined)
+                                filePath = parts[i].attributes['file'];
+                        }
+
+                        pushItemToAgent(url, id, grandparentTitle, title, rating, filePath);
+
                         return;
                     }
                 }
