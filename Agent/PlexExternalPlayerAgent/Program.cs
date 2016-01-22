@@ -30,57 +30,40 @@ namespace PlexExternalPlayerAgent
                 {
                     Console.WriteLine("Got Request!");
 
-                    var expectedProtocol = "1";
                     var protocol = context.Request.QueryString.GetByName("protocol");
 
-                    if (protocol != "1")
+                    if (protocol != Properties.Resources.ExpectedProtocol)
                     {
-                        MessageBox.Show($"Agent and script version differ.  Agent: {expectedProtocol}  Script : {protocol}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Agent and script version differ.  Agent: {Properties.Resources.ExpectedProtocol}  Script : {protocol}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return Task.Factory.GetCompleted();
                     }
 
                     context.Response = HttpResponse.CreateWithMessage(HttpResponseCode.Ok, "Received", false);
 
-                    var info = new ProcessStartInfo();
-                    info.FileName = WebUtility.UrlDecode(context.Request.QueryString.GetByName("item"));
-                    info.UseShellExecute = true;
-
-                    if (File.Exists(info.FileName))
+                    var streamPath = WebUtility.UrlDecode(context.Request.QueryString.GetByName("item"));
+                    if (streamPath.EndsWith(".avi") ||
+                        streamPath.EndsWith(".mkv") ||
+                        streamPath.EndsWith(".mp4") ||
+                        streamPath.EndsWith(".mpg") ||
+                        streamPath.EndsWith(".ts") ||
+                        streamPath.EndsWith(".mpeg"))
                     {
-                        var fn = info.FileName.ToLower();
-                        if (fn.EndsWith(".avi") ||
-                            fn.EndsWith(".mkv") ||
-                            fn.EndsWith(".mp4") ||
-                            fn.EndsWith(".mpg") ||
-                            fn.EndsWith(".ts") ||
-                            fn.EndsWith(".mpeg"))
+                        try
                         {
-                            try {
-                                Process.Start(info);
-                            }
-                            catch(Exception e)
-                            {
-                                MessageBox.Show($"Error running {info.FileName}  due to : {e.Message}","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show($"Tried to run {info.FileName} but it wasn't allowed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-
-                    } else if (Directory.Exists(info.FileName))
-                    {
-                        try {
+                            var info = new ProcessStartInfo();
+                            info.FileName = Properties.Settings.Default.PlayerPath;
+                            info.Arguments = streamPath + Properties.Settings.Default.PlayerArguments;
+                            info.UseShellExecute = Properties.Settings.Default.ShowCommandLine;
                             Process.Start(info);
                         }
                         catch (Exception e)
                         {
-                            MessageBox.Show($"Error running {info.FileName}  due to : {e.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Error running {streamPath}  due to : {e.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
                     {
-                        MessageBox.Show($"Tried to run {info.FileName} but it didn't exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Tried to run {streamPath} but it wasn't allowed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                     return Task.Factory.GetCompleted();
