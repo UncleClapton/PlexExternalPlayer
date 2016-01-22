@@ -21,7 +21,7 @@ External Plex Player is a plex modification that allows for browsing using the w
 * If the install dialog does not immediately appear for you in Firefox, a banner with the option to install the script should appear after the script loads.
 
 ## Documentation 1.4+ (Coming soon.)
-**Note: ** These features are currently in development, and not available on release.
+**Note: ** These features are currently in development, and not available on the release version.
 
 ### Generic Protocol
 * Designed to be an open protocol for other scripts to send files to the agent.
