@@ -46,5 +46,17 @@ namespace PlexExternalPlayerAgent.Properties {
                 this["PlayerArguments"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowCommandLine {
+            get {
+                return ((bool)(this["ShowCommandLine"]));
+            }
+            set {
+                this["ShowCommandLine"] = value;
+            }
+        }
     }
 }
