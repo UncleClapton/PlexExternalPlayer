@@ -26,6 +26,7 @@ External Plex Player is a plex modification that allows for browsing using the w
 ### Generic Protocol
 **NEW TO v1.4**
 * Designed to be an open protocol for other scripts to send files to the agent.
+* It is currently disabled by default, however it can be enabled by switching "EnableGenericProtocol" in the agent .config file to `true`.
 * Format: `http://localhost:7251/?protocol=1001&url=(url)&title=(title)`
 
 
