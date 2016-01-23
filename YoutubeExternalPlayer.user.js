@@ -9,7 +9,7 @@
 // @grant       GM_xmlhttpRequest
 // ==/UserScript==
 
-var DEBUG = true;
+var DEBUG = false;
 
 var makeRequest = function(url){
    if(DEBUG) logMessage("Request Made. Url: " + url);
