@@ -121,7 +121,15 @@ namespace PlexExternalPlayerAgent
                     {
                         Console.WriteLine("Recieved Invalid Request!");
 
-                        MessageBox.Show($"Invalid protocol recieived: {protocol}. Ensure the sending script is updated and valid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if(Properties.Settings.Default.UnsupportedProtocols.Contains(protocol))
+                            MessageBox.Show($"Invalid protocol recieived: {protocol}. This protocol is outdated and no longer supported. Please update your script(s).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else if(protocol == Properties.Resources.GenericProtocol)
+                            MessageBox.Show($"Invalid protocol recieived: {protocol}. Generic Protcol is disabled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else
+                            MessageBox.Show($"Invalid protocol recieived: {protocol}. The protocol recieived is invalid. Please contact the executing script's developer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+
                         return Task.Factory.GetCompleted();
                     }
                 });
