@@ -97,6 +97,16 @@
     <Content Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>rd /S /Q "$(SolutionDir)ReleaseVers\Compiled"
+md "$(SolutionDir)ReleaseVers\Compiled"</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /Y "$(TargetDir)$(TargetFileName)" "$(SolutionDir)ReleaseVers\Compiled"
+xcopy /Y "$(TargetDir)$(TargetFileName).config" "$(SolutionDir)ReleaseVers\Compiled"
+xcopy /Y "$(TargetDir)*.dll" "$(SolutionDir)ReleaseVers\Compiled"
+xcopy /Y /E /I "$(SolutionDir)ReleaseVers\DocFiles\*" "$(SolutionDir)ReleaseVers\Compiled"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
