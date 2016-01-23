@@ -73,12 +73,12 @@ namespace PlexExternalPlayerAgent
                         {
                             MessageBox.Show($"Blank or null url recieived, Unable to open");
                         }
-                            
-                 
+
+
                         return Task.Factory.GetCompleted();
                         #endregion
                     }
-                    else if (protocol == Properties.Resources.GenericProtocol)
+                    else if (protocol == Properties.Resources.GenericProtocol && Properties.Settings.Default.EnableGenericProtocol)
                     {
                         #region GenericProtocol
 
