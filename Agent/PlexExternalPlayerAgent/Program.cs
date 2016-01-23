@@ -22,10 +22,17 @@ namespace PlexExternalPlayerAgent
         [STAThread]
         static void Main()
         {
-
             using (var httpServer = new HttpServer(new HttpRequestProvider()))
             {
-                httpServer.Use(new TcpListenerAdapter(new TcpListener(IPAddress.Loopback, 7251)));
+                try
+                {
+                    httpServer.Use(new TcpListenerAdapter(new TcpListener(IPAddress.Loopback, 7251)));
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show($"Error while initilizing agent server. There may be another agent currently running. Closing agent...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Application.Exit();
+                }
                 httpServer.Use((context, next) =>
                 {
                     var protocol = context.Request.QueryString.GetByName("protocol");
