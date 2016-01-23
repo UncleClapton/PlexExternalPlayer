@@ -6,6 +6,8 @@ The original project can be found [here](https://github.com/Kayomani/PlexExterna
 
 External Plex Player is a plex modification that allows for browsing using the web interface but then opting to play files in your standard media player.
 
+![screenshot](http://i.imgur.com/aM37t76.png "screenshot")
+
 ### Installation
 1. Install Chrome or Firefox
 2. Install [TamperMonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) (Chrome) or [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) (Firefox).
@@ -16,6 +18,35 @@ External Plex Player is a plex modification that allows for browsing using the w
 7. Install the script: [Click Me!](https://raw.githubusercontent.com/UncleClapton/PlexExternalPlayer/master/PlexExternalPlayer.user.js)*
 8. Refresh any existing plex pages you have open.
 
-*If the install dialog does not immediately appear for you in Firefox, a banner with the option to install the script should appear after the script loads.
+* If the install dialog does not immediately appear for you in Firefox, a banner with the option to install the script should appear after the script loads.
 
-![screenshot](http://i.imgur.com/aM37t76.png "screenshot")
+## Documentation 1.4+ (Coming soon.)
+**Note: ** These features are currently in development, and not available on the release version.
+
+### Generic Protocol
+* Designed to be an open protocol for other scripts to send files to the agent.
+* It is currently disabled by default, however it can be enabled by switching "EnableGenericProtocol" in the agent .config file to `true`.
+* Format: `http://localhost:7251/?protocol=1001&url=(url)&title=(title)`
+
+
+### Player Argument variables
+The PlayerPlexArguments and PlayerGenericArguments property accepts metadata variables to pass into
+
+#####PlayerPlexArguments
+
+| Variable | Description |
+|----------|-------------|
+|%url%|The hosted file url|
+|%fileId%|The plex-assigned file ID|
+|%title%|The display title of the media file. Typically the movie name, or episode title.|
+|%seriesTitle%| The series name of the media file. If the media file is a movie, or has no series name, this will contain blank string.|
+|%fullTitle%|A combined variable for "title" and "seriesTitle". If no series title is available, this will only contain the  "title"|
+|%contentRating%|The content rating of the media file. |
+|%filePath%|The server's local storage path for the media file.|
+
+#####PlayerGenericArguments
+
+| Variable | Description |
+|----------|-------------|
+|%url%|The hosted file url|
+|%title%|The title of the video stream|
