@@ -39,17 +39,17 @@ namespace PlexExternalPlayerAgent
                         context.Response = HttpResponse.CreateWithMessage(HttpResponseCode.Ok, "Received", false);
 
                         var streamPath = WebUtility.UrlDecode(context.Request.QueryString.GetByName("url"));
-                        var id = context.Request.QueryString.GetByName("id") ?? "";
-                        var title = context.Request.QueryString.GetByName("title") ?? "";
-                        var grandparentTitle = context.Request.QueryString.GetByName("grandfatherTitle") ?? "";
-                        var rating = context.Request.QueryString.GetByName("rating") ?? "";
+                        var id = WebUtility.UrlDecode(context.Request.QueryString.GetByName("id")) ?? "";
+                        var title = WebUtility.UrlDecode(context.Request.QueryString.GetByName("title")) ?? "";
+                        var grandparentTitle = WebUtility.UrlDecode(context.Request.QueryString.GetByName("grandparentTitle")) ?? "";
+                        var rating = WebUtility.UrlDecode(context.Request.QueryString.GetByName("rating")) ?? "";
                         var filePath = WebUtility.UrlDecode(context.Request.QueryString.GetByName("filePath")) ?? "";
 
                         var playerArguments = Properties.Settings.Default.PlayerPlexArguments
                                                 .Replace("%url%", streamPath)
                                                 .Replace("%fileId%", id)
                                                 .Replace("%title%", title)
-                                                .Replace("%seriesTitle%", grandparentTitle )
+                                                .Replace("%seriesTitle%", grandparentTitle)
                                                 .Replace("%fullTitle%", (string.IsNullOrWhiteSpace(grandparentTitle) ? "" : grandparentTitle + " - ") + title)
                                                 .Replace("%contentRating%", rating)
                                                 .Replace("%filePath%", filePath);
