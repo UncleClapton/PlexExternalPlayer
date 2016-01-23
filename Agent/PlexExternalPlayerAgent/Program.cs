@@ -89,7 +89,7 @@ namespace PlexExternalPlayerAgent
                         var streamPath = WebUtility.UrlDecode(context.Request.QueryString.GetByName("url"));
                         var title = context.Request.QueryString.GetByName("title") ?? "";
 
-                        var playerArguments = Properties.Settings.Default.PlayerPlexArguments
+                        var playerArguments = Properties.Settings.Default.PlayerGenericArguments
                                                 .Replace("%url%", streamPath)
                                                 .Replace("%title%", title);
 
