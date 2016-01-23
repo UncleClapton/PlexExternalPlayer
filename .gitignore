@@ -2,5 +2,4 @@
 /Agent/PlexExternalPlayerAgent/bin/*
 /Agent/PlexExternalPlayerAgent/obj/*
 /Agent/.vs/PlexExternalPlayerAgent/v14/*.suo
-Agent/ReleaseVers/
-TwitchExternalPlayer.user.js
+
