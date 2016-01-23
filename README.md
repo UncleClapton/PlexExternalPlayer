@@ -15,8 +15,8 @@ External Plex Player is a plex modification that allows for browsing using the w
 4. Follow the readme.txt on how to set up the agent with your media player of choice.
 5. Run it at startup using a shortcut in the startup folder.
 6. Run the agent manually so you get the icon in the tray. Requires .Net 4.5 on Windows, may work on Linux/mono.
-7. Install the script: [Click Me!](https://raw.githubusercontent.com/UncleClapton/PlexExternalPlayer/master/PlexExternalPlayer.user.js)*
-8. If you wish to install the Youtube Script: [Click Me!](https://raw.githubusercontent.com/UncleClapton/PlexExternalPlayer/master/YoutubeExternalPlayer.user.js)*
+7. Install the script: [Click Me!](https://raw.githubusercontent.com/UncleClapton/PlexExternalPlayer/clapton/master/PlexExternalPlayer.user.js)*
+8. If you wish to install the Youtube Script: [Click Me!](https://raw.githubusercontent.com/UncleClapton/PlexExternalPlayer/clapton/master/YoutubeExternalPlayer.user.js)*
 9. Refresh any existing plex pages you have open.
 
 * If the install dialog does not immediately appear for you in Firefox, a banner with the option to install the script should appear after the script loads.
