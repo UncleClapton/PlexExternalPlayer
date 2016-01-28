@@ -22,7 +22,7 @@ namespace PlexExternalPlayerAgent
             {
                 Current = filePath.ReadXml<Settings>();
 
-                if (Current.Settings_FileVersion != CurrentSettingsVersion)
+                if (Current.SettingsVersion != CurrentSettingsVersion)
                     Current = new Settings();
             }
             catch (Exception ex)
@@ -36,11 +36,11 @@ namespace PlexExternalPlayerAgent
         #region Properties
 
         #region Settings - Version
-        private string _Settings_FileVersion;
-        public string Settings_FileVersion
+        private string _SettingsVersion;
+        public string SettingsVersion
         {
-            get { return this._Settings_FileVersion; }
-            set { this._Settings_FileVersion = value; }
+            get { return this._SettingsVersion; }
+            set { this._SettingsVersion = value; }
         }
         #endregion
 
@@ -90,11 +90,11 @@ namespace PlexExternalPlayerAgent
         #endregion
 
         #region EnableLogging
-        private bool _EnableLogging;
-        public bool EnableLogging
+        private bool _EnableAdvancedLogging;
+        public bool EnableAdvancedLogging
         {
-            get { return this._EnableLogging; }
-            set { this._EnableLogging = value; }
+            get { return this._EnableAdvancedLogging; }
+            set { this._EnableAdvancedLogging = value; }
         }
         #endregion
 
@@ -103,12 +103,13 @@ namespace PlexExternalPlayerAgent
         #region Functions
         public Settings()
         {
+            SettingsVersion = CurrentSettingsVersion;
             PlayerPath = "mpv";
             PlayerPlexArguments = "\"%url%\" --title=\"%fullTitle%\"";
             ShowCommandLine = false;
             PlayerGenericArguments = "\"%url%\" --title=\"%title%\"";
             EnableGenericProtocol = true;
-            EnableLogging = false;
+            EnableAdvancedLogging = false;
         }
         public void Save()
         {

@@ -33,7 +33,7 @@ namespace PlexExternalPlayerAgent
         {
             ShowInTaskbar = false;
             displayCommandLineToolStripMenuItem.Checked = Settings.Current.ShowCommandLine;
-            enableLoggingToolStripMenuItem.Checked = Settings.Current.EnableLogging;
+            enableLoggingToolStripMenuItem.Checked = Settings.Current.EnableAdvancedLogging;
             Hide();
         }
 
@@ -58,15 +58,15 @@ namespace PlexExternalPlayerAgent
 
         private void enableLoggingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Settings.Current.EnableLogging)
+            if (Settings.Current.EnableAdvancedLogging)
             {
                 enableLoggingToolStripMenuItem.Checked = false;
-                Settings.Current.EnableLogging = false;
+                Settings.Current.EnableAdvancedLogging = false;
             }
             else
             {
                 enableLoggingToolStripMenuItem.Checked = true;
-                Settings.Current.EnableLogging = true;
+                Settings.Current.EnableAdvancedLogging = true;
             }
         }
     }
