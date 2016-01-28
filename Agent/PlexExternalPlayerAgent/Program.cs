@@ -28,7 +28,7 @@ namespace PlexExternalPlayerAgent
             {
                 try
                 {
-                    if (Settings.Current.EnableLogging) LoggingService.Current.Log("Starting Player Agent. Advanced Logging is active, Welcome!");
+                    if (Settings.Current.EnableAdvancedLogging) LoggingService.Current.Log("Starting Player Agent. Advanced Logging is active, Welcome!");
                     httpServer.Use(new TcpListenerAdapter(new TcpListener(IPAddress.Loopback, 7251)));
                 }
                 catch (Exception e)
@@ -46,20 +46,20 @@ namespace PlexExternalPlayerAgent
 
                     if (protocol == Properties.Resources.PlexProtocol)
                     {
-                        if (Settings.Current.EnableLogging) LoggingService.Current.Log("Recieived plex request!");
-                        if (Settings.Current.EnableLogging) LoggingService.Current.Log($"Raw request data:{context.Request.ToString()}");
+                        if (Settings.Current.EnableAdvancedLogging) LoggingService.Current.Log("------");
+                        if (Settings.Current.EnableAdvancedLogging) LoggingService.Current.Log("Recieived plex request!");
                         ServePlexProtocolRequest(context);
                     }
                     else if (protocol == Properties.Resources.GenericProtocol && Settings.Current.EnableGenericProtocol)
                     {
-                        if (Settings.Current.EnableLogging) LoggingService.Current.Log("Recieved generic request!");
-                        if (Settings.Current.EnableLogging) LoggingService.Current.Log($"Raw request data:{context.Request.ToString()}");
+                        if (Settings.Current.EnableAdvancedLogging) LoggingService.Current.Log("------");
+                        if (Settings.Current.EnableAdvancedLogging) LoggingService.Current.Log("Recieved generic request!");
                         ServeGenericProtocolRequest(context);
                     }
                     else
                     {
-                        if (Settings.Current.EnableLogging) LoggingService.Current.Log("Recieved invalid request!");
-                        if (Settings.Current.EnableLogging) LoggingService.Current.Log($"Raw request data:{context.Request.ToString()}");
+                        if (Settings.Current.EnableAdvancedLogging) LoggingService.Current.Log("------");
+                        if (Settings.Current.EnableAdvancedLogging) LoggingService.Current.Log("Recieved invalid request!");
                         HandleInvalidProtocolCode(protocol);
                     }
                     return Task.Factory.GetCompleted();
@@ -96,6 +96,8 @@ namespace PlexExternalPlayerAgent
             var rating = GetQueryStringProperty(context.Request, "rating");
             var filePath = GetQueryStringProperty(context.Request, "filePath");
 
+            if (Settings.Current.EnableAdvancedLogging) LoggingService.Current.Log($"StreamPath: {streamPath} | ID: {id} | title: {title} | grandparentTitle: {grandparentTitle} | Rating: {rating} | filePath: {filePath}");
+
             var playerArguments = Settings.Current.PlayerPlexArguments
                                     .Replace("%url%", streamPath)
                                     .Replace("%fileId%", id)
@@ -114,7 +116,7 @@ namespace PlexExternalPlayerAgent
                     info.Arguments = playerArguments;
                     info.UseShellExecute = Settings.Current.ShowCommandLine;
                     Process.Start(info);
-                    if (Settings.Current.EnableLogging) LoggingService.Current.Log($"Running command: {info.FileName} {info.Arguments}");
+                    if (Settings.Current.EnableAdvancedLogging) LoggingService.Current.Log($"Running command: {info.FileName} {info.Arguments}");
                 }
                 catch (Exception e)
                 {
@@ -138,6 +140,8 @@ namespace PlexExternalPlayerAgent
                                     .Replace("%url%", streamPath)
                                     .Replace("%title%", title);
 
+            if (Settings.Current.EnableAdvancedLogging) LoggingService.Current.Log($"StreamPath: {streamPath} | title: {title}");
+
             if (!string.IsNullOrWhiteSpace(streamPath))
             {
                 try
@@ -147,7 +151,7 @@ namespace PlexExternalPlayerAgent
                     info.Arguments = playerArguments;
                     info.UseShellExecute = Settings.Current.ShowCommandLine;
                     Process.Start(info);
-                    if (Settings.Current.EnableLogging) LoggingService.Current.Log($"Running command: {info.FileName} {info.Arguments}");
+                    if (Settings.Current.EnableAdvancedLogging) LoggingService.Current.Log($"Running command: {info.FileName} {info.Arguments}");
                 }
                 catch (Exception e)
                 {
