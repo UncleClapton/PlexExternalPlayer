@@ -21,7 +21,7 @@ namespace PlexExternalPlayerAgent
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.Save();
+            Settings.Current.Save();
             Application.Exit();
         }
 
@@ -33,7 +33,7 @@ namespace PlexExternalPlayerAgent
         private void Form1_Load_1(object sender, EventArgs e)
         {
             ShowInTaskbar = false;
-            displayCommandLineToolStripMenuItem.Checked = Properties.Settings.Default.ShowCommandLine;
+            displayCommandLineToolStripMenuItem.Checked = Settings.Current.ShowCommandLine;
             Hide();
         }
 
@@ -44,15 +44,29 @@ namespace PlexExternalPlayerAgent
 
         private void displayCommandLineToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.ShowCommandLine)
+            if (Settings.Current.ShowCommandLine)
             {
                 displayCommandLineToolStripMenuItem.Checked = false;
-                Properties.Settings.Default.ShowCommandLine = false;
+                Settings.Current.ShowCommandLine = false;
             }
             else
             {
                 displayCommandLineToolStripMenuItem.Checked = true;
-                Properties.Settings.Default.ShowCommandLine = true;
+                Settings.Current.ShowCommandLine = true;
+            }
+        }
+
+        private void enableLoggingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Settings.Current.EnableLogging)
+            {
+                enableLoggingToolStripMenuItem.Checked = false;
+                Settings.Current.EnableLogging = false;
+            }
+            else
+            {
+                enableLoggingToolStripMenuItem.Checked = true;
+                Settings.Current.ShowCommandLine = true;
             }
         }
     }

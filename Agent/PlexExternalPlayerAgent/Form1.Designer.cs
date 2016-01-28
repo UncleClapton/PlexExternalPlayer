@@ -33,8 +33,9 @@
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showVersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displayCommandLineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.enableLoggingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,9 +52,10 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showVersionToolStripMenuItem,
             this.displayCommandLineToolStripMenuItem,
+            this.enableLoggingToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(198, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(198, 114);
             // 
             // showVersionToolStripMenuItem
             // 
@@ -61,6 +63,13 @@
             this.showVersionToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.showVersionToolStripMenuItem.Text = "Show Version";
             this.showVersionToolStripMenuItem.Click += new System.EventHandler(this.showVersionToolStripMenuItem_Click);
+            // 
+            // displayCommandLineToolStripMenuItem
+            // 
+            this.displayCommandLineToolStripMenuItem.Name = "displayCommandLineToolStripMenuItem";
+            this.displayCommandLineToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.displayCommandLineToolStripMenuItem.Text = "Display Command Line";
+            this.displayCommandLineToolStripMenuItem.Click += new System.EventHandler(this.displayCommandLineToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -70,12 +79,12 @@
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             this.exitToolStripMenuItem.VisibleChanged += new System.EventHandler(this.exitToolStripMenuItem_VisibleChanged);
             // 
-            // displayCommandLineToolStripMenuItem
+            // enableLoggingToolStripMenuItem
             // 
-            this.displayCommandLineToolStripMenuItem.Name = "displayCommandLineToolStripMenuItem";
-            this.displayCommandLineToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.displayCommandLineToolStripMenuItem.Text = "Display Command Line";
-            this.displayCommandLineToolStripMenuItem.Click += new System.EventHandler(this.displayCommandLineToolStripMenuItem_Click);
+            this.enableLoggingToolStripMenuItem.Name = "enableLoggingToolStripMenuItem";
+            this.enableLoggingToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.enableLoggingToolStripMenuItem.Text = "Enable Logging";
+            this.enableLoggingToolStripMenuItem.Click += new System.EventHandler(this.enableLoggingToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -97,6 +106,7 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showVersionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem displayCommandLineToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem enableLoggingToolStripMenuItem;
     }
 }
 
