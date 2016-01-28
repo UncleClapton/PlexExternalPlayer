@@ -21,7 +21,6 @@ namespace PlexExternalPlayerAgent
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Settings.Current.Save();
             Application.Exit();
         }
 
@@ -34,6 +33,7 @@ namespace PlexExternalPlayerAgent
         {
             ShowInTaskbar = false;
             displayCommandLineToolStripMenuItem.Checked = Settings.Current.ShowCommandLine;
+            enableLoggingToolStripMenuItem.Checked = Settings.Current.EnableLogging;
             Hide();
         }
 
@@ -66,7 +66,7 @@ namespace PlexExternalPlayerAgent
             else
             {
                 enableLoggingToolStripMenuItem.Checked = true;
-                Settings.Current.ShowCommandLine = true;
+                Settings.Current.EnableLogging = true;
             }
         }
     }
