@@ -12,29 +12,29 @@
 var DEBUG = false;
 
 var makeRequest = function(url){
-   if(DEBUG) logMessage("Request Made. Url: " + url);
-   return new Promise( function (resolve, reject) {
-       GM_xmlhttpRequest({
-           method: "GET",
-           url: url,
-           onload: resolve,
-           onerror: reject
-       });
-   });    
+  if(DEBUG) logMessage("Request Made. Url: " + url);
+  return new Promise( function (resolve, reject) {
+    GM_xmlhttpRequest({
+      method: "GET",
+      url: url,
+      onload: resolve,
+      onerror: reject
+    });
+  });    
 };
 
 var logMessage = function(msg){
-    console.log('YoutubeExternal DEBUG: ' + msg);   
+  console.log('YoutubeExternal DEBUG: ' + msg);   
 };
 
 var pushItemToAgent = function(url, title) {
-    if(DEBUG) logMessage('Playing ' + url);
-    var agentUrl = 'http://localhost:7251/?protocol=1001&url=' + encodeURIComponent(url) +
-                    "&title=" + encodeURIComponent(title);
-    
-     return new Promise(function (resolve, reject) {
-         makeRequest(agentUrl);
-     });
+  if(DEBUG) logMessage('Playing ' + url);
+  var agentUrl = 'http://localhost:7251/?protocol=1001&url=' + encodeURIComponent(url) +
+  "&title=" + encodeURIComponent(title);
+
+  return new Promise(function (resolve, reject) {
+    makeRequest(agentUrl);
+  });
 };
 
 var pageHookActive = false;
