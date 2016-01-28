@@ -53,7 +53,7 @@ namespace PlexExternalPlayerAgent
                         var rating = WebUtility.UrlDecode(context.Request.QueryString.GetByName("rating")) ?? "";
                         var filePath = WebUtility.UrlDecode(context.Request.QueryString.GetByName("filePath")) ?? "";
 
-                        var playerArguments = Properties.Settings.Default.PlayerPlexArguments
+                        var playerArguments = Settings.Current.PlayerPlexArguments
                                                 .Replace("%url%", streamPath)
                                                 .Replace("%fileId%", id)
                                                 .Replace("%title%", title)
@@ -67,9 +67,9 @@ namespace PlexExternalPlayerAgent
                             try
                             {
                                 var info = new ProcessStartInfo();
-                                info.FileName = Properties.Settings.Default.PlayerPath;
+                                info.FileName = Settings.Current.PlayerPath;
                                 info.Arguments = playerArguments;
-                                info.UseShellExecute = Properties.Settings.Default.ShowCommandLine;
+                                info.UseShellExecute = Settings.Current.ShowCommandLine;
                                 Process.Start(info);
                             }
                             catch (Exception e)
@@ -97,7 +97,7 @@ namespace PlexExternalPlayerAgent
                         var streamPath = WebUtility.UrlDecode(context.Request.QueryString.GetByName("url"));
                         var title = context.Request.QueryString.GetByName("title") ?? "";
 
-                        var playerArguments = Properties.Settings.Default.PlayerGenericArguments
+                        var playerArguments = Settings.Current.PlayerGenericArguments
                                                 .Replace("%url%", streamPath)
                                                 .Replace("%title%", title);
 
@@ -106,9 +106,9 @@ namespace PlexExternalPlayerAgent
                             try
                             {
                                 var info = new ProcessStartInfo();
-                                info.FileName = Properties.Settings.Default.PlayerPath;
+                                info.FileName = Settings.Current.PlayerPath;
                                 info.Arguments = playerArguments;
-                                info.UseShellExecute = Properties.Settings.Default.ShowCommandLine;
+                                info.UseShellExecute = Settings.Current.ShowCommandLine;
                                 Process.Start(info);
                             }
                             catch (Exception e)
