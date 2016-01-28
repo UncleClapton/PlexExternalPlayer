@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using Clapton.Xml;
 
@@ -54,40 +53,50 @@ namespace PlexExternalPlayerAgent
         }
         #endregion
 
+        #region PlayerPlexArguments
         private string _PlayerPlexArguments;
         public string PlayerPlexArguments
         {
             get { return this._PlayerPlexArguments; }
             set { this._PlayerPlexArguments = value; }
         }
+        #endregion
 
+        #region ShowCommandLine
         private bool _ShowCommandLine;
         public bool ShowCommandLine
         {
             get { return this._ShowCommandLine; }
             set { this._ShowCommandLine = value; }
         }
+        #endregion
 
+        #region PlayerGenericArguments
         private string _PlayerGenericArguments;
         public string PlayerGenericArguments
         {
             get { return this._PlayerGenericArguments; }
             set { this._PlayerGenericArguments = value; }
         }
+        #endregion
 
+        #region EnableGenericProtocol
         private bool _EnableGenericProtocol;
         public bool EnableGenericProtocol
         {
             get { return this._EnableGenericProtocol; }
             set { this._EnableGenericProtocol = value; }
         }
+        #endregion
 
+        #region EnableLogging
         private bool _EnableLogging;
         public bool EnableLogging
         {
             get { return this._EnableLogging; }
             set { this._EnableLogging = value; }
         }
+        #endregion
 
         #endregion
 
