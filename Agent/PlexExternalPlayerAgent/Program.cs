@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Clapton.Dialog;
+using Clapton.Exceptions;
+using System;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
@@ -6,9 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using uhttpsharp;
 using uhttpsharp.Listeners;
-using Clapton.Dialog;
 using uhttpsharp.RequestProviders;
-using Clapton.Exceptions;
 
 namespace PlexExternalPlayerAgent
 {

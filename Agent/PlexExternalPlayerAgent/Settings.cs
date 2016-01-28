@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Clapton.Xml;
+using System;
 using System.IO;
-using Clapton.Xml;
 
 namespace PlexExternalPlayerAgent
 {

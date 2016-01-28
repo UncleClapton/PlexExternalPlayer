@@ -1,28 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PlexExternalPlayerAgent
 {
     class LoggingService
     {
+        #region Static members
         public static LoggingService Current{ get; private set; }
 
         public static void load()
         {
             Current = new LoggingService();
         }
+        #endregion
 
+        #region Private fields
         private string _SessionLogFilePath;
+        #endregion
 
+        #region Properties
+        #region LogBuffer
         private List<string> _LogBuffer;
         public List<string> LogBuffer
         {
             get { return _LogBuffer; }
             set { _LogBuffer = value; }
         }
+        #endregion
+        #endregion
 
         #region Constructor
         internal LoggingService()
@@ -37,7 +42,7 @@ namespace PlexExternalPlayerAgent
         #region Log
         public void Log(string message)
         {
-            string formattedMessage = string.Format("{1:HH:mm:ss} {0}", message, DateTime.Now);
+            string formattedMessage = string.Format("[{1:HH:mm:ss}] {0}", message, DateTime.Now);
             LogBuffer.Add(formattedMessage);
             Clapton.IO.File.TryWriteToFile(_SessionLogFilePath, formattedMessage + "\n", true);
         }
@@ -75,6 +80,5 @@ namespace PlexExternalPlayerAgent
         #endregion
 
         #endregion
-
     }
 }
