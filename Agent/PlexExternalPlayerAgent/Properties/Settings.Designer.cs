@@ -23,66 +23,6 @@ namespace PlexExternalPlayerAgent.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("mpv")]
-        public string PlayerPath {
-            get {
-                return ((string)(this["PlayerPath"]));
-            }
-            set {
-                this["PlayerPath"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\"%url%\" --title=\"%fullTitle%\"")]
-        public string PlayerPlexArguments {
-            get {
-                return ((string)(this["PlayerPlexArguments"]));
-            }
-            set {
-                this["PlayerPlexArguments"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool ShowCommandLine {
-            get {
-                return ((bool)(this["ShowCommandLine"]));
-            }
-            set {
-                this["ShowCommandLine"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\"%url%\" --title=\"%title%\"")]
-        public string PlayerGenericArguments {
-            get {
-                return ((string)(this["PlayerGenericArguments"]));
-            }
-            set {
-                this["PlayerGenericArguments"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool EnableGenericProtocol {
-            get {
-                return ((bool)(this["EnableGenericProtocol"]));
-            }
-            set {
-                this["EnableGenericProtocol"] = value;
-            }
-        }
-        
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +

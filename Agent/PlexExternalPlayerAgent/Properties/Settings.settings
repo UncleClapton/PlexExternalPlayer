@@ -2,21 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PlexExternalPlayerAgent.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="PlayerPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">mpv</Value>
-    </Setting>
-    <Setting Name="PlayerPlexArguments" Type="System.String" Scope="User">
-      <Value Profile="(Default)">"%url%" --title="%fullTitle%"</Value>
-    </Setting>
-    <Setting Name="ShowCommandLine" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="PlayerGenericArguments" Type="System.String" Scope="User">
-      <Value Profile="(Default)">"%url%" --title="%title%"</Value>
-    </Setting>
-    <Setting Name="EnableGenericProtocol" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="UnsupportedProtocols" Type="System.Collections.Specialized.StringCollection" Scope="Application">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
