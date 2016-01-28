@@ -31,8 +31,8 @@ namespace PlexExternalPlayerAgent
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show($"Error while initilizing agent server. There may be another agent currently running. Closing agent...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Application.Exit();
+                    Dialogs.ErrorDialog($"Error while initilizing agent server. There may be another agent currently running. Closing agent...");
+                    Environment.Exit(1);
                 }
                 httpServer.Use((context, next) =>
                 {
@@ -41,7 +41,7 @@ namespace PlexExternalPlayerAgent
                     if (protocol == Properties.Resources.PlexProtocol)
                     {
                         #region PlexProtocol
-
+                        
                         Console.WriteLine("Recieved Plex Request!");
 
                         context.Response = HttpResponse.CreateWithMessage(HttpResponseCode.Ok, "Received", false);
@@ -74,19 +74,19 @@ namespace PlexExternalPlayerAgent
                             }
                             catch (Exception e)
                             {
-                                MessageBox.Show($"Error running {streamPath}  due to : {e.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                Dialogs.ErrorDialog($"Error running {streamPath}  due to : {e.Message}");
                             }
                         }
                         else
                         {
-                            MessageBox.Show($"Blank or null url recieived, Unable to open");
+                            Dialogs.WarningDialog($"Blank or null url recieived, Unable to open", "Unable to Open file...");
                         }
 
 
                         return Task.Factory.GetCompleted();
-                        #endregion
+#endregion
                     }
-                    else if (protocol == Properties.Resources.GenericProtocol && Properties.Settings.Default.EnableGenericProtocol)
+                    else if (protocol == Properties.Resources.GenericProtocol && Settings.Current.EnableGenericProtocol)
                     {
                         #region GenericProtocol
 
@@ -113,32 +113,32 @@ namespace PlexExternalPlayerAgent
                             }
                             catch (Exception e)
                             {
-                                MessageBox.Show($"Error running {streamPath}  due to : {e.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                Dialogs.ErrorDialog($"Error running {streamPath}  due to : {e.Message}");
                             }
                         }
                         else
                         {
-                            MessageBox.Show($"Blank or null url recieived, Unable to open");
+                            Dialogs.WarningDialog($"Blank or null url recieived, Unable to open", "Unable to Open file...");
                         }
 
 
                         return Task.Factory.GetCompleted();
-                        #endregion
+#endregion
                     }
                     else
                     {
+                        #region InvalidProtocol
                         Console.WriteLine("Recieved Invalid Request!");
 
-                        if(Properties.Settings.Default.UnsupportedProtocols.Contains(protocol))
-                            MessageBox.Show($"Invalid protocol recieived: {protocol}. This protocol is outdated and no longer supported. Please update your script(s).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        else if(protocol == Properties.Resources.GenericProtocol)
-                            MessageBox.Show($"Invalid protocol recieived: {protocol}. Generic Protcol is disabled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (Properties.Settings.Default.UnsupportedProtocols.Contains(protocol))
+                            Dialogs.ErrorDialog($"Invalid protocol recieived: {protocol}. This protocol is outdated and no longer supported. Please update your script(s).");
+                        else if (protocol == Properties.Resources.GenericProtocol)
+                            Dialogs.ErrorDialog($"Invalid protocol recieived: {protocol}. Generic Protcol is disabled.");
                         else
-                            MessageBox.Show($"Invalid protocol recieived: {protocol}. The protocol recieived is invalid. Please contact the executing script's developer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-
+                            Dialogs.ErrorDialog($"Invalid protocol recieived: {protocol}. The protocol recieived is invalid. Please contact the executing script's developer.");
 
                         return Task.Factory.GetCompleted();
+                        #endregion
                     }
                 });
 
