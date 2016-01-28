@@ -13,18 +13,18 @@
 var DEBUG = false;
 
 var makeRequest = function(url){
- if(DEBUG) logMessage("Request Made. Url: " + url);
- return new Promise( function (resolve, reject) {
-   GM_xmlhttpRequest({
-     method: "GET",
-     headers: {
-      "X-Plex-Token":localStorage["myPlexAccessToken"]
-    },
-    url: url,
-    onload: resolve,
-    onerror: reject
-  });
- });    
+  if(DEBUG) logMessage("Request Made. Url: " + url);
+  return new Promise( function (resolve, reject) {
+    GM_xmlhttpRequest({
+      method: "GET",
+      headers: {
+        "X-Plex-Token":localStorage["myPlexAccessToken"]
+      },
+      url: url,
+      onload: resolve,
+      onerror: reject
+    });
+  });    
 };
 
 var logMessage = function(msg){
@@ -47,10 +47,10 @@ var pushPlexItemToAgent = function(url, id, grandparentTitle, title, rating, fil
   "&filePath=" + encodeURIComponent(filePath);
 
   return new Promise(function (resolve, reject) {
-   makeRequest(agentUrl).then(function(){
-     markAsPlayedInPlex(id).then(resolve, reject);
-   },reject);
- });
+    makeRequest(agentUrl).then(function(){
+      markAsPlayedInPlex(id).then(resolve, reject);
+    },reject);
+  });
 };
 
 var clickListener = function(e) {
@@ -73,38 +73,38 @@ var clickListener = function(e) {
       logMessage('PlexID: ' + id);
       logMessage('PlexMetadataLink: ' + window.location.origin + '/library/metadata/' + id + '?checkFiles=1&includeExtras=1');
     }
-        // Get metadata
-        makeRequest(window.location.origin + '/library/metadata/' + id + '?checkFiles=1&includeExtras=1')
-        .then(function(response){
-             // Play the first availible part
-             var parts = response.responseXML.getElementsByTagName('Part');
-             var video = response.responseXML.getElementsByTagName('Video');
-             var videoMetadata = video[0];
-             for (var i = 0; i < parts.length; i++) {
-              if (parts[i].attributes['key'] !== undefined) {
-                var url = window.location.origin + parts[i].attributes['key'].value;
-                var grandparentTitle = "";
-                var title = "";
-                var rating = "";
-                var filePath = "";
+// Get metadata
+makeRequest(window.location.origin + '/library/metadata/' + id + '?checkFiles=1&includeExtras=1')
+.then(function(response){
+// Play the first availible part
+var parts = response.responseXML.getElementsByTagName('Part');
+var video = response.responseXML.getElementsByTagName('Video');
+var videoMetadata = video[0];
+for (var i = 0; i < parts.length; i++) {
+  if (parts[i].attributes['key'] !== undefined) {
+    var url = window.location.origin + parts[i].attributes['key'].value;
+    var grandparentTitle = ' ';
+    var title = ' ';
+    var rating = ' ';
+    var filePath = ' ';
 
-                if (videoMetadata !== undefined) {
-                  if(videoMetadata.attributes['grandparentTitle'] !== undefined)
-                    grandparentTitle = videoMetadata.attributes['grandparentTitle'].value;
-                  if(videoMetadata.attributes['title'] !== undefined)
-                    title = videoMetadata.attributes['title'].value;
-                  if(videoMetadata.attributes['contentRating'] !== undefined)
-                    rating = videoMetadata.attributes['contentRating'].value;
-                  if(parts[i].attributes['file'] !== undefined)
-                    filePath = parts[i].attributes['file'].value;
-                }
+    if (videoMetadata !== undefined) {
+      if(videoMetadata.attributes['grandparentTitle'] !== undefined)
+        grandparentTitle = videoMetadata.attributes['grandparentTitle'].value;
+      if(videoMetadata.attributes['title'] !== undefined)
+        title = videoMetadata.attributes['title'].value;
+      if(videoMetadata.attributes['contentRating'] !== undefined)
+        rating = videoMetadata.attributes['contentRating'].value;
+      if(parts[i].attributes['file'] !== undefined)
+        filePath = parts[i].attributes['file'].value;
+    }
 
-                pushPlexItemToAgent(url, id, grandparentTitle, title, rating, filePath);
+    pushPlexItemToAgent(url, id, grandparentTitle, title, rating, filePath);
 
-                return;
-              }
-            }
-          });
+    return;
+  }
+}
+});
 }
 };
 
