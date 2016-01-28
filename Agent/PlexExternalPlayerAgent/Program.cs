@@ -20,6 +20,9 @@ namespace PlexExternalPlayerAgent
         [STAThread]
         static void Main()
         {
+            Settings.Load();
+            AppDomain.CurrentDomain.UnhandledException += (sender, args) => ExceptionHandling.ReportException(sender, args.ExceptionObject as Exception);
+
             using (var httpServer = new HttpServer(new HttpRequestProvider()))
             {
                 try
