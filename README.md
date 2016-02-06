@@ -1,6 +1,13 @@
 # External plex player
 
-This is my personal fork of the External Plex player, which will work with remote plex servers as well as local ones using the plex-hosted media stream.
+This is my personal fork of the External Plex player.
+
+**Notable Differences**
+* Remote video streams supported
+* MetaData variables to pass to a specififed player
+* Support for other websites to launch video streams through the agent
+
+**Disclaimer:** This fork is heavily based around MPV. I cannot garuntee all features will work with other media players.
 
 The original project can be found [here](https://github.com/Kayomani/PlexExternalPlayer)
 
@@ -21,13 +28,13 @@ External Plex Player is a plex modification that allows for browsing using the w
 
 * If the install dialog does not immediately appear for you in Firefox, a banner with the option to install the script should appear after the script loads.
 
-## Documentation 1.4+
-**Note: ** These features are currently in development, and may change in the future.
+## Documentation 1.5+
+**Note:** These features are currently in development, and may change in the future.
 
 ### Generic Protocol
 * Designed to be an open protocol for other scripts to send files to the agent.
-* It is currently disabled by default, however it can be enabled by switching "EnableGenericProtocol" in the agent .exe.config file to `true`.
-* Format: `http://localhost:7251/?protocol=1001&url=(url)&title=(title)`
+* Format: `http://localhost:7251/?protocol=1001&url=(url)&title=(title)&time=(time)`
+  * Protocol and URL are mandatory params. all others are optional as the agent has default values for all extra params.
 
 
 ### Player Argument variables
@@ -51,3 +58,4 @@ The PlayerPlexArguments and PlayerGenericArguments property accepts metadata var
 |----------|-------------|
 |%url%|The hosted file url|
 |%title%|The title of the video stream|
+|%time% |Time to seek to when opening the video stream. (1.5.1+)|
