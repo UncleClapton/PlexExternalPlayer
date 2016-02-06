@@ -135,10 +135,13 @@ namespace PlexExternalPlayerAgent
         {
             var streamPath = GetQueryStringProperty(context.Request, "url");
             var title = GetQueryStringProperty(context.Request, "title");
+            var time = GetQueryStringProperty(context.Request, "time");
+            if (string.IsNullOrWhiteSpace(time)) time = "0";
 
             var playerArguments = Settings.Current.PlayerGenericArguments
                                     .Replace("%url%", streamPath)
-                                    .Replace("%title%", title);
+                                    .Replace("%title%", title)
+                                    .Replace("%time%", time);
 
             if (Settings.Current.EnableAdvancedLogging) LoggingService.Current.Log($"StreamPath: {streamPath} | title: {title}");
 
