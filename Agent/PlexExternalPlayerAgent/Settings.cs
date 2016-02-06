@@ -107,7 +107,7 @@ namespace PlexExternalPlayerAgent
             PlayerPath = "mpv";
             PlayerPlexArguments = "\"%url%\" --title=\"%fullTitle%\"";
             ShowCommandLine = false;
-            PlayerGenericArguments = "\"%url%\" --title=\"%title%\"";
+            PlayerGenericArguments = "\"%url%\" --title=\"%title%\" --start=\"%time%\"";
             EnableGenericProtocol = true;
             EnableAdvancedLogging = false;
         }
