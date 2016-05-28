@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using uhttpsharp;
 using uhttpsharp.Listeners;
 using uhttpsharp.RequestProviders;
+using Clapton.Integration;
 
 namespace PlexExternalPlayerAgent
 {
@@ -23,6 +24,9 @@ namespace PlexExternalPlayerAgent
             Settings.Load();
             LoggingService.load();
             AppDomain.CurrentDomain.UnhandledException += (sender, args) => ExceptionHandling.ReportException(sender, args.ExceptionObject as Exception);
+
+            ToastHandler.load("Clapton.ExtPlayerAgent");
+            ToastHandler.Current.SendSimpleToast("icon.ico", "External Player Agent","Agent Starting Up","");
 
             using (var httpServer = new HttpServer(new HttpRequestProvider()))
             {
@@ -116,6 +120,7 @@ namespace PlexExternalPlayerAgent
                     info.Arguments = playerArguments;
                     info.UseShellExecute = Settings.Current.ShowCommandLine;
                     Process.Start(info);
+                    ToastHandler.Current.SendSimpleToast("icon.ico", "External Player Agent", "Recieved Request", title);
                     if (Settings.Current.EnableAdvancedLogging) LoggingService.Current.Log($"Running command: {info.FileName} {info.Arguments}");
                 }
                 catch (Exception e)
@@ -154,6 +159,7 @@ namespace PlexExternalPlayerAgent
                     info.Arguments = playerArguments;
                     info.UseShellExecute = Settings.Current.ShowCommandLine;
                     Process.Start(info);
+                    ToastHandler.Current.SendSimpleToast("icon.ico", "External Player Agent", "Recieved Request", title);
                     if (Settings.Current.EnableAdvancedLogging) LoggingService.Current.Log($"Running command: {info.FileName} {info.Arguments}");
                 }
                 catch (Exception e)
@@ -172,11 +178,11 @@ namespace PlexExternalPlayerAgent
         private static void HandleInvalidProtocolCode(string protocol)
         {
             if (Properties.Settings.Default.UnsupportedProtocols.Contains(protocol))
-                Dialogs.ErrorDialog($"Invalid protocol recieived: {protocol}. This protocol is outdated and no longer supported. Please update your script(s).");
+                ToastHandler.Current.SendSimpleToast("icon.ico", "External Player Agent", $"Invalid protocol recieived: {protocol}", "This protocol is outdated and no longer supported. Please update your script(s).");
             else if (protocol == Properties.Resources.GenericProtocol)
-                Dialogs.ErrorDialog($"Invalid protocol recieived: {protocol}. Generic Protcol is disabled.");
+                ToastHandler.Current.SendSimpleToast("icon.ico", "External Player Agent", $"Invalid protocol recieived: {protocol}", "Generic Protcol is disabled.");
             else
-                Dialogs.ErrorDialog($"Invalid protocol recieived: {protocol}. The protocol recieived is invalid. Please contact the executing script's developer.");
+                ToastHandler.Current.SendSimpleToast("icon.ico", "External Player Agent", $"Invalid protocol recieived: {protocol}", "The protocol recieived is invalid. Please contact the executing script's developer.");
             return;
         }
     }
