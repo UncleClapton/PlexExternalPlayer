@@ -100,7 +100,15 @@ namespace PlexExternalPlayerAgent
             var rating = GetQueryStringProperty(context.Request, "rating");
             var filePath = GetQueryStringProperty(context.Request, "filePath");
 
-            if (Settings.Current.EnableAdvancedLogging) LoggingService.Current.Log($"StreamPath: {streamPath} | ID: {id} | title: {title} | grandparentTitle: {grandparentTitle} | Rating: {rating} | filePath: {filePath}");
+            if (Settings.Current.EnableAdvancedLogging)
+            {
+                LoggingService.Current.Log($"StreamPath : {streamPath}");
+                LoggingService.Current.Log($"        ID : {id}");
+                LoggingService.Current.Log($"     Title : {title}");
+                LoggingService.Current.Log($"   GPTitle : {grandparentTitle}");
+                LoggingService.Current.Log($"    Rating : {rating}");
+                LoggingService.Current.Log($"  FilePath : {filePath}");
+            }
 
             var playerArguments = Settings.Current.PlayerPlexArguments
                                     .Replace("%url%", streamPath)
@@ -148,7 +156,12 @@ namespace PlexExternalPlayerAgent
                                     .Replace("%title%", title)
                                     .Replace("%time%", time);
 
-            if (Settings.Current.EnableAdvancedLogging) LoggingService.Current.Log($"StreamPath: {streamPath} | title: {title}");
+            if (Settings.Current.EnableAdvancedLogging)
+            {
+                LoggingService.Current.Log($"StreamPath : {streamPath}");
+                LoggingService.Current.Log($"     Title : {title}");
+                LoggingService.Current.Log($"      Time : {time}");
+            }
 
             if (!string.IsNullOrWhiteSpace(streamPath))
             {
